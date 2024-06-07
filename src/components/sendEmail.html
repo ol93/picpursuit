@@ -1,0 +1,42 @@
+
+      // Send an email to the customer with the link to the original product
+
+      const template = fs.readFileSync("./emailTemplate.mjml", "utf8");
+
+      const filledTemplate = template
+        .replace("[[Name]]", customerName)
+        .replace("[[productURL]]", `${productUrls}`)
+        .replace("[[productName]]", `${purchasedProductNames}`)
+        .replace(
+          "[[productPrice]]",
+          `${purchasedProducts.map((product) => product.amount_total / 100)}€`
+        );
+
+      const emailBody = mjml(filledTemplate).html;
+
+      const transporter = nodemailer.createTransport({
+        service: "gmail", // replace with your email provider
+        auth: {
+          user: "o.devwork@gmail.com", // replace with your email
+          pass: "vgsm ridm bger abhn", // replace with your password
+        },
+      });
+
+      // Send an email to the customer with the link to the original product
+      const mailOptions = {
+        from: "o.devwork@gmail.com", // sender address
+        to: customerEmail, // list of receivers
+        subject: "Your Purchase Details", // Subject line
+        html: emailBody, // MJML template
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
+    
+    res.status(200).json({ received: true });
+  
