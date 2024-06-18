@@ -12,6 +12,7 @@ import Checkout from "../components/Checkout";
 import { useConfirm } from "material-ui-confirm";
 import BuyWithCredits from "../components/BuyWithCredits";
 import { PhotosContext } from "../components/PhotosContext";
+import BuyWithCrypto from "../components/buyWithCrypto";
 
 export default function Cart() {
   const product = useContext(PhotosContext);
@@ -161,6 +162,9 @@ export default function Cart() {
 
               <div className="mt-6">
                 <BuyWithCredits />
+              </div>
+              <div className="mt-6">
+                <BuyWithCrypto/>
               </div>
             </section>
           </form>
