@@ -163,9 +163,7 @@ export default function Cart() {
               <div className="mt-6">
                 <BuyWithCredits />
               </div>
-              <div className="mt-6">
-                <BuyWithCrypto/>
-              </div>
+             
             </section>
           </form>
         </div>
